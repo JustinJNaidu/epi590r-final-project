@@ -17,8 +17,6 @@ ss <- read_csv(here::here("data", "raw", "ss.csv"))
 
 
 ```{r}
-# Renaming variables as dataset is already cleaned
-
 ss_clean <- ss %>%
 	rename(
 		Person_ID = `Person ID`,
