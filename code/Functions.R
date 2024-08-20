@@ -1,7 +1,6 @@
-absolute_path <- here::here('raw/ss.csv')
-data <- read.csv(absolute_path, header = TRUE)
+ss_clean <- read_csv(here::here("data", "clean", "ss_clean.csv"))
 
-data <- data %>%
+ss_clean <- data %>%
 	rename(
 		`Person ID` = Person.ID,
 		`Duration of Sleep` = Sleep.Duration,
