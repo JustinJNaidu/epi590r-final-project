@@ -41,7 +41,7 @@ The data set examined in this final project report is the "Sleep, Health, and Li
 
 ```{r}
 #| label: fig-table1
-#| fig-cap: "Table 1: Baseline Characteristics of Study Participants by Gender. This table presents the distribution of key characteristics among female (N = 1,841) and male (N = 1,891) participants. Values are expressed as median (Q1, Q3) or n (%). The characteristics include sleep duration, physical activity level, BMI category, heart rate, daily steps, and presence of sleep disorders. Notable findings include similar median sleep durations and physical activity levels between genders, but significant differences in BMI categories and the prevalence of sleep disorders, particularly sleep apnea, which was more common among females."
+#| fig-cap: "Table 1: This table presents the distribution of key characteristics among female (N = 1,841) and male (N = 1,891) participants. Values are expressed as median (Q1, Q3) or n (%). The characteristics include sleep duration, physical activity level, BMI category, heart rate, daily steps, and presence of sleep disorders. Notable findings include similar median sleep durations and physical activity levels between genders, but significant differences in BMI categories and the prevalence of sleep disorders, particularly sleep apnea, which was more common among females."
 
 library(gtsummary)
 
@@ -68,25 +68,35 @@ univar_reg <- tbl_uvregression(
   data = ss_clean,
   y = Sleep_Duration,
   include = c(
-    Gender, Sleep_Quality, Stress_Level, 
-    BMI_Category, Sleep_Disorder
-  ),
+    Gender, Sleep_Duration, Sleep_Quality, Stress_Level, 
+    BMI_Category, Sleep_Disorder),
   method = lm
 )
 
 univar_reg
+
 ```
 
 
-
+# Figures
 ```{r}
-#| label: fig-table1
-#| fig-cap: "Table 1 shows the descriptive statistics"
-tbl_summary(
-  nlsy,
-  by = sex_cat,
-  include = c(sex_cat, race_eth_cat, region_cat,
-              eyesight_cat, glasses, age_bir))
+#| label: fig-boxplot
+#| fig-cap: "Figure 1: In this boxplot, comparing both males and females in the dataset, the median sleep duration for females (represented by the red boxplot) is approximately 8 hours. The median sleep duration for males (represented by the blue boxplot) is around 7 hours. Females tend to have longer sleep durations."
+
+library(ggplot2)
+
+
+# Boxplot by Gender
+ggplot(ss_clean, aes(x = Gender, y = Sleep_Duration, fill = Gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot of Sleep Duration by Gender",
+    x = "Gender",
+    y = "Sleep Duration"
+  )
+
+
+
 ```
 
 ```{r}
@@ -107,7 +117,7 @@ tbl_summary(
   missing_text = "Missing")
 ```
 
-@fig-table1 contains a table and @fig-table2 contains a table.
+@fig-table1 contains a table that illustrates the baseline characteristics of study participants by gender and @fig-boxplot contains a boxplot that compares the sleep duration between males and females.
 
 ```{r}
 
