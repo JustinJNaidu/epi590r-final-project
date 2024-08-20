@@ -64,8 +64,17 @@ tbl_summary(
 # Regression Analysis
 
 ```{r}
+univar_reg <- tbl_uvregression(
+  data = ss_clean,
+  y = Sleep_Duration,
+  include = c(
+    Gender, Sleep_Quality, Stress_Level, 
+    BMI_Category, Sleep_Disorder
+  ),
+  method = lm
+)
 
-
+univar_reg
 ```
 
 
